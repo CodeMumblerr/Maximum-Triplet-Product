@@ -1,0 +1,33 @@
+# Python program to find maximum product of triplets at each index with explanation
+
+def max_triplet_product(arr):
+    first = second = third = float('-inf')
+    result = []
+
+    for idx, num in enumerate(arr):
+        if num > first:
+            third = second
+            second = first
+            first = num
+        elif num > second:
+            third = second
+            second = num
+        elif num > third:
+            third = num
+
+        if idx < 2:
+            result.append("-1 (Less than 3 elements, cannot form triplet)")
+        else:
+            product = first * second * third
+            result.append(f"Top 3 numbers: {first}, {second}, {third} -> Product = {product}")
+
+    return result
+
+def print_array(arr):
+    for item in arr:
+        print(item)
+
+if __name__ == "__main__":
+    arr = [6, 1, 5, 2, 7]
+    ans = max_triplet_product(arr)
+    print_array(ans)
